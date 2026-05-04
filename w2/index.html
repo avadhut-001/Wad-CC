@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Portfolio</title>
+
+  <style>
+    body {
+      font-family: Arial;
+      margin: 0;
+      background: linear-gradient(to right, #667eea, #764ba2);
+      color: #333;
+    }
+
+    header {
+      text-align: center;
+      padding: 30px;
+      color: white;
+    }
+
+    nav {
+      background: rgba(0,0,0,0.2);
+      text-align: center;
+      padding: 10px;
+    }
+
+    nav a {
+      color: white;
+      margin: 10px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    section {
+      padding: 20px;
+    }
+
+    h2 {
+      text-align: center;
+      color: white;
+    }
+
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+
+    .box {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      width: 250px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      text-align: center;
+      transition: transform 0.3s;
+    }
+
+    .box:hover {
+      transform: scale(1.05);
+    }
+
+    footer {
+      text-align: center;
+      padding: 15px;
+      color: white;
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      nav {
+        display: flex;
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>My Portfolio</h1>
+  <p>Student | Engineer</p>
+</header>
+
+<nav>
+  <a href="#about">About</a>
+  <a href="#skills">Skills</a>
+  <a href="#projects">Projects</a>
+  <a href="#education">Education</a>
+  <a href="#contact">Contact</a>
+</nav>
+
+<section id="about">
+  <h2>About Me</h2>
+  <div class="container">
+    <div class="box">
+      <p>Hello! I am a passionate student who enjoys coding and building projects.</p>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <h2>Skills</h2>
+  <div class="container">
+    <div class="box">C++</div>
+    <div class="box">Java</div>
+    <div class="box">Python</div>
+    <div class="box">HTML, CSS, JS</div>
+  </div>
+</section>
+
+<section id="projects">
+  <h2>Projects</h2>
+  <div class="container">
+    <div class="box">
+      <h3>Movie Recommendation</h3>
+      <p>Suggest movies using API.</p>
+    </div>
+    <div class="box">
+      <h3>QR Attendance</h3>
+      <p>Attendance system using QR.</p>
+    </div>
+  </div>
+</section>
+
+<section id="education">
+  <h2>Education</h2>
+  <div class="container">
+    <div class="box">
+      <p>B.E. IT</p>
+      <p>Graduation: 2027</p>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <h2>Contact</h2>
+  <div class="container">
+    <div class="box">
+      <p>Email: your@email.com</p>
+      <p>Phone: 1234567890</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 My Portfolio</p>
+</footer>
+
+</body>
+</html>

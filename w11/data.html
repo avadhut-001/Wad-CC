@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>User Data</title>
+  <style>
+    table { border-collapse: collapse; width: 100%; }
+    th, td { border: 1px solid black; padding: 8px; text-align: center; }
+  </style>
+</head>
+<body>
+
+<h2>User List</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Mobile</th>
+      <th>DOB</th>
+      <th>City</th>
+      <th>Address</th>
+    </tr>
+  </thead>
+  <tbody id="tableBody"></tbody>
+</table>
+
+<script>
+let users = JSON.parse(localStorage.getItem("users")) || [];
+let table = document.getElementById("tableBody");
+
+if(users.length === 0){
+  table.innerHTML = "<tr><td colspan='6'>No users found</td></tr>";
+} else {
+  users.forEach(u => {
+    table.innerHTML += `
+      <tr>
+        <td>${u.name}</td>
+        <td>${u.email}</td>
+        <td>${u.mobile}</td>
+        <td>${u.dob}</td>
+        <td>${u.city}</td>
+        <td>${u.address}</td>
+      </tr>
+    `;
+  });
+}
+</script>
+
+</body>
+</html>

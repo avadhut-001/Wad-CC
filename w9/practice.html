@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            text-align: center;
+        }
+
+        input,
+        button {
+            padding: 10px;
+            margin: 5px;
+
+        }
+    </style>
+</head>
+
+<body>
+    <h3>Weather Finder</h3>
+    <input type="text" id="city" placeholder="Enter the City Name">
+    <button onclick="getweather()">Get Data</button>
+
+    <div id="result"></div>
+
+    <script>
+        function getweather() {
+            let city = document.getElementById('city').value;
+
+            let xhr = new XMLHttpRequest();
+            xhr.open("GET", "data.json", true);
+            xhr.onload = function () {
+                if (xhr.status === 200) {
+                    let weatherdata = JSON.parse(xhr.responseText);
+                    let resultdiv = document.getElementById('result');
+
+                    if (weatherdata[city]) {
+                        let data = weatherdata[city];
+                        resultdiv.innerHTML = `
+                            <h3>${city}</h3>
+                        <p>Temperature: ${data.temp}</p>
+                        <p>Humidity: ${data.humidity}</p>
+                        <p>Condition: ${data.condition}</p>
+                        `;
+                    }
+                    else{
+                        resultdiv.innerHTML = "<p>City not found</p>";
+                    }
+                }
+                else{
+                    console.log("Error in loading");
+                }
+            }
+            xhr.send();
+        }
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,33 @@
+body{
+    margin: 0;
+    background: white;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+header{
+    text-align: center;
+    background: #007bff;
+    color: white;
+    padding: 20px;
+}
+
+section{
+    padding: 25px;
+
+}
+
+h2{
+    color: #007bff;
+    
+    text-align: center;
+}
+
+.box{
+    background: white;
+    border: 2px solid black;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    border-radius: 25px;
+    margin: 0 auto;
+    max-width: 800px;
+    padding: 10px;
+}

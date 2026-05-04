@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body{
+        text-align: center;
+        align-items: center;
+    }
+    #list{
+        display: flex;
+        flex-wrap: wrap;
+        gap: 50px;
+        
+    }
+    card{
+        width: 200px;
+        border: 1px solid #ccc;
+    }
+</style>
+<body>
+    <h3>Restaurant / Gallary</h3>
+
+    <div id="list"></div>
+
+    <script>
+        fetch('/api/items').then(res => res.json())
+        .then(data => {
+            const container = document.getElementById('list');
+
+            data.forEach(item => {
+                const div = document.createElement('div');
+                div.className = "card";
+
+                div.innerHTML = `
+                    <img src="${item.image}" width="100">
+                    <h4>${item.name}</h4>
+                    <p>₹${item.price}</p>
+                `;
+                container.appendChild(div);
+            })
+        })
+    </script>
+</body>
+
+</html>

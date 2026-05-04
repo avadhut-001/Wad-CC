@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Catalog</title>
+
+  <style>
+    body {
+      font-family: Arial;
+      margin: 20px;
+    }
+
+    h2 {
+      text-align: center;
+    }
+
+    /* Responsive Table Wrapper */
+    .table-container {
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 600px;
+    }
+
+    th, td {
+      border: 1px solid #ddd;
+      padding: 10px;
+      text-align: center;
+    }
+
+    th {
+      background-color: #333;
+      color: white;
+    }
+
+    img {
+      width: 70px;
+      height: 70px;
+      object-fit: cover;
+    }
+
+    /* Pagination */
+    .pagination {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    button {
+      padding: 8px 15px;
+      margin: 5px;
+      cursor: pointer;
+      border: none;
+      background-color: #007bff;
+      color: white;
+      border-radius: 5px;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    /* Mobile Responsive */
+    @media (max-width: 600px) {
+      th, td {
+        font-size: 12px;
+        padding: 6px;
+      }
+
+      img {
+        width: 50px;
+        height: 50px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<h2>Product Catalog</h2>
+
+<div class="table-container">
+  <table>
+    <thead>
+      <tr>
+        <th>Product</th>
+        <th>Image</th>
+        <th>Price (₹)</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody id="productTable"></tbody>
+  </table>
+</div>
+
+<div class="pagination">
+  <button onclick="prevPage()">Previous</button>
+  <span id="pageInfo"></span>
+  <button onclick="nextPage()">Next</button>
+</div>
+
+<script>
+  const products = [
+    {name:"Wireless Headphones", img:"https://via.placeholder.com/80", price:"7999", desc:"Noise-cancelling over-ear headphones"},
+    {name:"Smartwatch", img:"https://via.placeholder.com/80", price:"12999", desc:"Fitness tracking smartwatch"},
+    {name:"Gaming Mouse", img:"https://via.placeholder.com/80", price:"2499", desc:"Ergonomic gaming mouse"},
+    {name:"Laptop Stand", img:"https://via.placeholder.com/80", price:"1999", desc:"Adjustable aluminium stand"},
+    
+    {name:"Keyboard", img:"https://via.placeholder.com/80", price:"1499", desc:"Mechanical keyboard"},
+    {name:"Monitor", img:"https://via.placeholder.com/80", price:"9999", desc:"Full HD display"},
+    {name:"USB Hub", img:"https://via.placeholder.com/80", price:"799", desc:"Multi-port USB hub"},
+    {name:"Webcam", img:"https://via.placeholder.com/80", price:"2999", desc:"HD webcam"},
+    {name:"Speakers", img:"https://via.placeholder.com/80", price:"3999", desc:"Stereo speakers"},
+    {name:"Power Bank", img:"https://via.placeholder.com/80", price:"1999", desc:"Fast charging power bank"},
+    {name:"Router", img:"https://via.placeholder.com/80", price:"3499", desc:"WiFi router"},
+    {name:"Tablet", img:"https://via.placeholder.com/80", price:"15999", desc:"Android tablet"}
+  ];
+
+  const rowsPerPage = 10;
+  let currentPage = 1;
+
+  function displayProducts() {
+    const table = document.getElementById("productTable");
+    table.innerHTML = "";
+
+    const start = (currentPage - 1) * rowsPerPage;
+    const end = start + rowsPerPage;
+    const pageProducts = products.slice(start, end);
+
+    pageProducts.forEach(p => {
+      table.innerHTML += `
+        <tr>
+          <td>${p.name}</td>
+          <td><img src="${p.img}"></td>
+          <td>₹${p.price}</td>
+          <td>${p.desc}</td>
+        </tr>
+      `;
+    });
+
+    document.getElementById("pageInfo").innerText =
+      "Page " + currentPage + " of " + Math.ceil(products.length / rowsPerPage);
+  }
+
+  function nextPage() {
+    if (currentPage < Math.ceil(products.length / rowsPerPage)) {
+      currentPage++;
+      displayProducts();
+    }
+  }
+
+  function prevPage() {
+    if (currentPage > 1) {
+      currentPage--;
+      displayProducts();
+    }
+  }
+
+  displayProducts();
+</script>
+
+</body>
+</html>

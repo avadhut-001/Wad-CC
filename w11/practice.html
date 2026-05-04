@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Register Form</h2>
+    <form id="registration">
+        <input type="text" id="name" placeholder="Enter your name">
+        <input type="email" id="rgemail" placeholder="Email" required>
+        <input type="text" id="mobile" placeholder="Mobile" required>
+        <input type="date" id="dob" required>
+        <input type="text" id="city" placeholder="City" required>
+        <input type="text" id="address" placeholder="Address" required>
+        <input type="password" id="regPassword" placeholder="Password" required>
+        
+
+        <button type="submit" >Send</button>
+    </form>
+
+    <h2>Login Form</h2>
+    <form id="loginform">
+        <input type="email" id="lgemail" placeholder="Enter Email">
+        <input type="password" id="pass" placeholder="Enter the password.">
+        <button type="submit">Login</button>
+    </form>
+
+
+    <script>
+
+        let users = JSON.parse(localStorage.getItem("users")) || [];
+
+        function ajaxPost(data){
+            return new Promise((resolve)=> {
+                setTimeout(()=> {
+                    resolve({status: "success", data:data});
+                },500)
+            })
+        }
+
+        document.getElementById('registration').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            let user = {
+                name: document.getElementById('name').value.trim(),
+                email: document.getElementById("rgemail").value.trim(),
+                mobile: document.getElementById("mobile").value.trim(),
+                dob: document.getElementById("dob").value,
+                city: document.getElementById("city").value.trim(),
+                address: document.getElementById("address").value.trim(),
+                password: document.getElementById("regPassword").value
+            }
+
+            ajaxPost(user).then(res => {
+                users.push(res.data);
+                localStorage.setItem("users", JSON.stringify(users));
+                alert("registraion successful");
+                registration.reset();
+            })
+
+            
+        })
+
+        document.getElementById('loginform').addEventListener("submit", function(e) {
+                e.preventDefault();
+
+                let email = document.getElementById('lgemail').value;
+                let pass = document.getElementById('pass').value;
+
+                let found = users.find(u => u.email === email && u.password === pass);
+                if(found){
+                    alert("login successful");
+                    window.location.href = "data.html";
+                }
+                else{
+                    alert("Invalid credentials");
+                }
+            })
+    </script>
+</body>
+</html>

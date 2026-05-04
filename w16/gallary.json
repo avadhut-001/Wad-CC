@@ -1,0 +1,12 @@
+[
+  {
+    "name": "Pasta",
+    "price": 250,
+    "image": "https://via.placeholder.com/150"
+  },
+  {
+    "name": "Pizza",
+    "price": 400,
+    "image": "https://via.placeholder.com/150"
+  }
+]

@@ -1,0 +1,23 @@
+Step 1: Configure NAT Network in VirtualBox
+Go to File → Tools → Network → NAT Networks
+Create a NAT Network (e.g., NatNetwork)
+Enable DHCP
+🔹 Step 2: Attach Both VMs to NAT Network
+
+For BOTH VM1 & VM2:
+
+Settings → Network
+Adapter 1 → Attached to: NAT Network
+Select your created network
+
+sudo apt install openssh-server
+sudo systemctl start ssh
+sudo systemctl enable ssh
+
+sudo systemctl status ssh
+
+ip a
+ipconfig
+
+scp file1.txt actual_username@10.0.2.16:~
+                ^username and ip of same vm.

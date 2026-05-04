@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Weather App (API)</title>
+    <style>
+        body {
+            font-family: Arial;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        input,
+        button {
+            padding: 10px;
+            margin: 5px;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2>Weather App (Using API)</h2>
+
+    <input type="text" id="city" placeholder="Enter city name">
+    <button onclick="getWeather()">Get Weather</button>
+
+    <div id="result"></div>
+
+    <script>
+        function getWeather() {
+
+            let city = document.getElementById("city").value.trim();
+
+            let apiKey = "YOUR_API_KEY_HERE"; // 🔑 put your key
+
+            let url = "https://api.openweathermap.org/data/2.5/weather?q=" 
+                      + city + "&appid=" + apiKey + "&units=metric";
+
+            let xhr = new XMLHttpRequest();
+
+            xhr.open("GET", url, true);
+
+            xhr.onload = function () {
+
+                if (xhr.status === 200) {
+
+                    let data = JSON.parse(xhr.responseText);
+
+                    document.getElementById("result").innerHTML =
+                        "Temperature: " + data.main.temp + " °C<br>" +
+                        "Humidity: " + data.main.humidity + " %<br>" +
+                        "Condition: " + data.weather[0].main;
+
+                } else {
+                    document.getElementById("result").innerHTML =
+                        "❌ City not found!";
+                }
+            };
+
+            xhr.send();
+        }
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simple To-Do</title>
+
+    <style>
+        body { font-family: Arial; text-align: center; }
+        input { padding: 5px; }
+        button { padding: 5px; margin: 3px; }
+        li { margin: 5px; }
+    </style>
+</head>
+<body>
+
+<h2>To-Do List</h2>
+
+<input type="text" id="task" placeholder="Enter task">
+<button onclick="addTask()">Add</button>
+
+<ul id="list"></ul>
+
+<script>
+const API = "http://localhost:3000/todos";
+
+// Load tasks
+function loadTasks() {
+    fetch(API)
+        .then(res => res.json())
+        .then(data => {
+            let list = document.getElementById("list");
+            list.innerHTML = "";
+
+            data.forEach(todo => {
+                let li = document.createElement("li");
+
+                li.innerHTML = `
+                    ${todo.text}
+                    <button onclick="editTask(${todo.id}, '${todo.text}')">Edit</button>
+                    <button onclick="deleteTask(${todo.id})">Delete</button>
+                `;
+
+                list.appendChild(li);
+            });
+        });
+}
+
+// Add task
+function addTask() {
+    let text = document.getElementById("task").value;
+
+    fetch(API, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ text: text })
+    })
+    .then(() => {
+        document.getElementById("task").value = "";
+        loadTasks();
+    });
+}
+
+// Delete task
+function deleteTask(id) {
+    fetch(API + "/" + id, {
+        method: "DELETE"
+    }).then(loadTasks);
+}
+
+// Edit task
+function editTask(id, oldText) {
+    let newText = prompt("Edit task:", oldText);
+
+    if (newText !== null) {
+        fetch(API + "/" + id, {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ text: newText })
+        }).then(loadTasks);
+    }
+}
+
+// Initial load
+loadTasks();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Simple To-Do App (AJAX)</title>
+    <style>
+        body {
+            font-family: Arial;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        input,
+        button {
+            padding: 8px;
+            margin: 5px;
+            
+        }
+
+        li {
+            margin: 10px;
+            list-style: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2>To-Do List</h2>
+
+    <input type="text" id="taskInput" placeholder="Enter task">
+    <button onclick="addTask()">Add</button>
+
+    <ul id="taskList"></ul>
+
+    <script>
+
+        let tasks = []; // acts like server database
+
+        // Load tasks (simulate AJAX GET)
+        function loadTasks() {
+            setTimeout(() => {
+                let list = document.getElementById("taskList");
+                list.innerHTML = "";
+
+                tasks.forEach((task, index) => {
+                    list.innerHTML += `
+                <li>
+                    ${task}
+                    <button onclick="editTask(${index})">Edit</button>
+                    <button onclick="deleteTask(${index})">Delete</button>
+                </li>
+            `;
+                });
+            }, 200);
+        }
+
+        // Add task (simulate AJAX POST)
+        function addTask() {
+            let task = document.getElementById("taskInput").value;
+
+            if (task === "") return;
+
+            setTimeout(() => {
+                tasks.push(task);
+                document.getElementById("taskInput").value = "";
+                loadTasks();
+            }, 200);
+        }
+
+        // Edit task (simulate AJAX PUT)
+        function editTask(index) {
+            let newTask = prompt("Edit task:", tasks[index]);
+
+            if (newTask !== null && newTask !== "") {
+                setTimeout(() => {
+                    tasks[index] = newTask;
+                    loadTasks();
+                }, 200);
+            }
+        }
+
+        // Delete task (simulate AJAX DELETE)
+        function deleteTask(index) {
+            setTimeout(() => {
+                tasks.splice(index, 1);
+                loadTasks();
+            }, 200);
+        }
+
+        // Initial load
+        loadTasks();
+
+    </script>
+
+</body>
+
+</html>

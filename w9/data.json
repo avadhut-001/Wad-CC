@@ -1,0 +1,8 @@
+{
+    "Mumbai": { "temp": 32, "humidity": 70, "desc": "Sunny" },
+    "Delhi": { "temp": 35, "humidity": 45, "desc": "Hot" },
+    "Pune": { "temp": 28, "humidity": 60, "desc": "Cloudy" },
+    "Bangalore": { "temp": 25, "humidity": 80, "desc": "Rainy" },
+    "Chennai": { "temp": 30, "humidity": 65, "desc": "Humid" }
+}
+  

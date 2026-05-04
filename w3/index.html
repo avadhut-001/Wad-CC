@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ABC Delights Menu</title>
+
+  <style>
+    body {
+      font-family: Arial;
+      margin: 0;
+      background: #f8f8f8;
+    }
+
+    header {
+      background: #ff5733;
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+
+    section {
+      padding: 20px;
+    }
+
+    h2 {
+      color: #ff5733;
+      text-align: center;
+    }
+
+    .box {
+      background: white;
+      padding: 15px;
+      margin: 10px auto;
+      max-width: 800px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+
+    /* List styling */
+    ul {
+      list-style: none;
+      padding: 0;
+      text-align: center;
+    }
+
+    ul li {
+      margin: 5px;
+      font-weight: bold;
+    }
+
+    /* Table */
+    .table-container {
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+    }
+
+    th, td {
+      border: 1px solid #ddd;
+      padding: 10px;
+      text-align: center;
+    }
+
+    th {
+      background: #ff5733;
+      color: white;
+    }
+
+    img {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+      border-radius: 5px;
+    }
+
+    footer {
+      text-align: center;
+      background: #333;
+      color: white;
+      padding: 10px;
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      img {
+        width: 60px;
+        height: 60px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>ABC Delights - Restaurant Menu</h1>
+</header>
+
+<!-- INTRO -->
+<section>
+  <h2>Welcome</h2>
+  <div class="box">
+    <p>Welcome to ABC Delights! We serve fresh and delicious food with high quality ingredients.</p>
+    <p><b>Chef’s Message:</b> "Our goal is to provide tasty and healthy meals."</p>
+    <p><b>Quality:</b> 100% hygiene and best ingredients guaranteed.</p>
+  </div>
+</section>
+
+<!-- TOP DISHES -->
+<section>
+  <h2>Top Dishes</h2>
+  <ul>
+    <li>1. Paneer Tikka</li>
+    <li>2. Biryani</li>
+  </ul>
+</section>
+
+<!-- CUISINES -->
+<section>
+  <h2>Available Cuisines</h2>
+  <ul>
+    <li>- Indian</li>
+    <li>- Italian</li>
+    <li>- Chinese</li>
+  </ul>
+</section>
+
+<!-- MENU TABLE -->
+<section>
+  <h2>Menu</h2>
+  <div class="table-container">
+    <table>
+      <tr>
+        <th>Dish</th>
+        <th>Image</th>
+        <th>Description</th>
+        <th>Price (₹)</th>
+      </tr>
+
+      <tr>
+        <td>Paneer Tikka</td>
+        <td><img src="https://via.placeholder.com/80"></td>
+        <td>Grilled paneer with spices</td>
+        <td>₹299</td>
+      </tr>
+
+      <tr>
+        <td>Biryani</td>
+        <td><img src="https://via.placeholder.com/80"></td>
+        <td>Rice with spices and vegetables</td>
+        <td>₹249</td>
+      </tr>
+
+      <tr>
+        <td>Pizza</td>
+        <td><img src="https://via.placeholder.com/80"></td>
+        <td>Cheesy Italian pizza</td>
+        <td>₹399</td>
+      </tr>
+
+      <tr>
+        <td>Noodles</td>
+        <td><img src="https://via.placeholder.com/80"></td>
+        <td>Chinese style noodles</td>
+        <td>₹199</td>
+      </tr>
+
+    </table>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 ABC Delights</p>
+</footer>
+
+</body>
+</html>

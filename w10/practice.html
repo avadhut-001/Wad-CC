@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            text-align: center;
+        }
+
+        input,
+        button {
+            padding: 10px;
+            margin: 5px;
+        }
+
+        li {
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h2>To Do List</h2>
+
+    <input type="text" id="task" placeholder="Enter task">
+    <button onclick="addtask()">Add</button>
+    <ul id="tasklist"></ul>
+    <script>
+        function loadtask(){
+            fetch('http://localhost:3000/tasks').then(res => res.json())
+            .then(data => {
+                let list = document.getElementById('tasklist');
+                list.innerHTML = "";
+                
+
+                data.forEach(task => {
+                    list.innerHTML += `
+                    <li>
+                        ${task.text}
+                        
+                    </li>
+                    `
+                })
+            })
+        }
+
+        function addtask(){
+            let text = document.getElementById('task').value;
+
+            fetch('http://localhost:3000/tasks', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({text}),
+            }).then(()=>
+            
+            loadtask());
+        }
+
+        loadtask();
+    </script>
+</body>
+</html>

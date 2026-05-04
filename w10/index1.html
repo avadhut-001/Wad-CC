@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>To-Do App</title>
+    <style>
+        body {
+            font-family: Arial;
+            text-align: center;
+        }
+
+        input,
+        button {
+            padding: 10px;
+            margin: 5px;
+        }
+
+        li {
+            margin: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2>To-Do List</h2>
+
+    <input type="text" id="taskInput" placeholder="Enter task">
+    <button onclick="addTask()">Add</button>
+
+    <ul id="taskList"></ul>
+
+    <script>
+        function loadTasks() {
+            fetch('http://localhost:3000/tasks')
+                .then(res => res.json())
+                .then(data => {
+                    let list = document.getElementById("taskList");
+                    list.innerHTML = "";
+
+                    data.forEach(task => {
+                        list.innerHTML += `
+                    <li>
+                        ${task.text}
+                        <button onclick="deleteTask(${task.id})">❌</button>
+                    </li>
+                `;
+                    });
+                });
+        }
+
+        function addTask() {
+            let text = document.getElementById("taskInput").value;
+
+            fetch('http://localhost:3000/tasks', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ text })
+            }).then(() => loadTasks());
+        }
+
+        function deleteTask(id) {
+            fetch(`http://localhost:3000/tasks/${id}`, {
+                method: 'DELETE'
+            }).then(() => loadTasks());
+        }
+
+        // Load tasks on start
+        loadTasks();
+    </script>
+
+</body>
+
+</html>
