@@ -1,0 +1,48 @@
+<h2>Login</h2>
+
+<input [(ngModel)]="email" placeholder="Email"><br>
+<input [(ngModel)]="password" placeholder="Password"><br>
+
+<button (click)="login()">Login</button>
+
+
+
+//////////////////////////
+
+import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
+
+@Component({
+  selector: 'app-login',
+  standalone: true,
+  imports: [FormsModule, CommonModule],   // ✅ fixed
+  templateUrl: './login.html',
+})
+export class Login {
+
+  email = "";
+  password = "";
+
+  constructor(private router: Router){}
+
+  login(){
+    const userData = localStorage.getItem('user');
+
+    if(!userData){
+      alert("Please register first");
+      return;
+    }
+
+    const user = JSON.parse(userData);
+
+    if(this.email === user.email && this.password === user.password){
+      localStorage.setItem('loggedIn', 'true');
+      this.router.navigate(['/profile']);
+    }
+    else{
+      alert("Invalid login");
+    }
+  }
+}
