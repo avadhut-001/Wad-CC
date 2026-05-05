@@ -1,0 +1,39 @@
+import { Component, signal } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+
+@Component({
+  selector: 'app-root',
+  imports: [RouterOutlet, FormsModule, CommonModule],
+  templateUrl: './app.html',
+  styleUrl: './app.css'
+})
+export class App {
+  task = "";
+  tasks: string[] = [];
+  editIndex = -1;
+
+  addTask(){
+    if(this.task.trim()=== "") return;
+
+    if(this.editIndex === -1){
+      this.tasks.push(this.task);
+    }
+    else{
+      this.tasks[this.editIndex] = this.task;
+      this.editIndex = -1;
+    }
+
+    this.task = "";
+  }
+
+  edittask(i: number){
+    this.task = this.tasks[i];
+    this.editIndex = i;
+  }
+
+  delete(i : number){
+    this.tasks.splice(i,1);
+  }
+}
