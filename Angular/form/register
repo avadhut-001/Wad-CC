@@ -1,0 +1,37 @@
+<div style="text-align: center;">
+  <h2>Registration Page</h2>
+
+  <div class="form-container" >
+    <input [(ngModel)]="user.name" placeholder="Name">
+    <input [(ngModel)]="user.email" placeholder="Email">
+    <input [(ngModel)]="user.password" placeholder="Password">
+
+    <button (click)="register()">Register</button>
+
+    
+  </div>
+</div>
+<a routerLink="/login">Go to Login</a>
+
+////////////////////////////////////////////////////////////////////////////
+
+import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { RouterLink } from '@angular/router'; 
+
+
+@Component({
+  selector: 'app-register',
+  imports: [FormsModule, RouterLink],
+  templateUrl: './register.html',
+  styleUrl: './register.css',
+})
+export class Register {
+
+  user = {name: '', email: '', password: ''};
+
+  register(){
+    localStorage.setItem('user',JSON.stringify(this.user));
+    alert('Register Successfully');
+  }
+}
