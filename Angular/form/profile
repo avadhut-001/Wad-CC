@@ -1,0 +1,22 @@
+<h2>User Profile</h2>
+
+<p>Name: {{user.name}}</p>
+<p>Email: {{user.email}}</p>
+
+<a routerLink="/login">Logout</a>
+
+
+////////////////////////////////////
+import { Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
+
+@Component({
+  standalone: true,
+  selector: 'app-profile',
+  imports: [RouterLink],
+  styleUrls: ['./profile.css'],
+  templateUrl: './profile.html'
+})
+export class Profile {
+  user = JSON.parse(localStorage.getItem('user') || '{}');
+}
