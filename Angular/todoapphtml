@@ -1,0 +1,15 @@
+<div style="text-align: center; margin-top: 50px;">
+  <h2>Simple To-Do List</h2>
+
+  <input [(ngModel)]="task" placeholder="Enter task">
+  <button (click)="addTask()">Add</button>
+
+
+  <ul>
+    <li *ngFor="let t of tasks; let i = index">
+      {{ t }}
+      <button (click)="edittask(i)">Edit</button>
+      <button (click)="delete(i)">Delete</button>
+    </li>
+  </ul>
+</div>
